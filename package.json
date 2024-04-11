@@ -1,7 +1,7 @@
 {
   "name": "vaultify",
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "packageManager": "pnpm@8.10.5",
   "description": "Conveniently manage the configuration file in your command-line project based on Node.js.",
   "author": "LU-JIEJIE",
