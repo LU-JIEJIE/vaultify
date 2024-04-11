@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.0",
   "packageManager": "pnpm@8.10.5",
-  "description": "一些描述",
+  "description": "Conveniently manage the configuration file in your command-line project based on Node.js.",
   "author": "LU-JIEJIE",
   "license": "MIT",
   "homepage": "https://github.com/LU-JIEJIE/vaultify#readme",

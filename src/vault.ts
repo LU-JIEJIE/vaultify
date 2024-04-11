@@ -31,6 +31,8 @@ export default class Vault {
     }
 
     this.name = formatOptions.name
+    if (this.name === '')
+      throw new Error('Name cannot be empty')
     this.displayName = formatOptions.displayNameTemplate.replace('[NAME]', this.name)
     this.cwd = envPath(this.displayName).config
     this.filePath = path.join(this.cwd, `${formatOptions.fileName}${formatOptions.fileExtension === '' ? '' : '.'}${formatOptions.fileExtension}`)
@@ -78,8 +80,8 @@ export default class Vault {
     this.store = newStore
   }
 
-  reset(isDefault: boolean = true) {
-    this.store = isDefault ? this.defaults : {}
+  reset(hard: boolean = true) {
+    this.store = hard ? this.defaults : {}
   }
 
   [Symbol.iterator](): Iterator<[string, unknown]> {
