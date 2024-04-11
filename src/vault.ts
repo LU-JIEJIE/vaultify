@@ -67,6 +67,21 @@ export default class Vault {
     this.store = isDefault ? this.defaults : {}
   }
 
+  [Symbol.iterator](): Iterator<[string, unknown]> {
+    const store = this.store
+    const keys = Object.keys(store)
+    let index = 0
+    return {
+      next: () => {
+        if (index < keys.length)
+          return { value: [keys[index], store[keys[index++]]], done: false }
+
+        else
+          return { value: undefined, done: true }
+      }
+    }
+  }
+
   get store(): Record<string, unknown> {
     try {
       const data = readFileSync(this.path)

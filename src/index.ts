@@ -11,5 +11,3 @@ const vault = new Vault({
     }
   }
 })
-
-console.log(vault.has('temp.age'))
