@@ -1,13 +1,5 @@
+import type { Options } from './vault'
 import Vault from './vault'
 
-const vault = new Vault({
-  name: 'Sakana',
-  defaults: {
-    name: 'Sakana',
-    temp: {
-      name: 'Kotori',
-      age: 20,
-      un: '1'
-    }
-  }
-})
+export default Vault
+export type { Options }

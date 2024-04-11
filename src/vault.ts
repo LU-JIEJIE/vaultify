@@ -1,28 +1,43 @@
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import path from 'node:path'
 import { deepEqual } from 'node:assert'
+import { Buffer } from 'node:buffer'
 import envPath from './envPath'
 import { deleteProperty, getProperty, setProperty } from './utils'
 
-interface Options {
+export interface Options {
   name: string
   displayNameTemplate?: `${string}[NAME]${string}`
+  fileName?: string
+  fileExtension?: string
   defaults?: Record<string, unknown>
+  obfuscate?: boolean
 }
 
 export default class Vault {
-  public name: string
-  public displayName: string
-  public cwd: string
-  public path: string
-  public defaults: Record<string, unknown>
+  public readonly name: string
+  public readonly displayName: string
+  public readonly cwd: string
+  public readonly filePath: string
+  public readonly obfuscate: boolean
+  public readonly defaults: Record<string, unknown>
   constructor(options: Options) {
-    this.name = options.name
-    this.displayName = options.displayNameTemplate ? options.displayNameTemplate.replace('[NAME]', this.name) : this.name
-    this.cwd = envPath(this.displayName).config
-    this.path = path.join(this.cwd, 'config.json')
+    const formatOptions = {
+      displayNameTemplate: '[NAME]',
+      fileName: 'config',
+      fileExtension: 'json',
+      obfuscate: false,
+      ...options
+    }
 
-    this.defaults = options.defaults || {}
+    this.name = formatOptions.name
+    this.displayName = formatOptions.displayNameTemplate.replace('[NAME]', this.name)
+    this.cwd = envPath(this.displayName).config
+    this.filePath = path.join(this.cwd, `${formatOptions.fileName}${formatOptions.fileExtension === '' ? '' : '.'}${formatOptions.fileExtension}`)
+
+    this.obfuscate = formatOptions.obfuscate
+
+    this.defaults = formatOptions.defaults || {}
 
     // init default
     const newStore = { ...this.defaults, ...this.store }
@@ -84,8 +99,9 @@ export default class Vault {
 
   get store(): Record<string, unknown> {
     try {
-      const data = readFileSync(this.path)
-      return JSON.parse(data.toString())
+      const data = readFileSync(this.filePath)
+      const rawData = this.obfuscate ? this._deobfuscate(data.toString()) : JSON.parse(data.toString())
+      return rawData
     }
     catch (error: any) {
       if (error.code === 'ENOENT')
@@ -106,10 +122,23 @@ export default class Vault {
 
   private _writeFile(value: Record<string, unknown>) {
     try {
-      writeFileSync(this.path, JSON.stringify(value, null, 2))
+      const _value = this.obfuscate ? this._obfuscate(value) : JSON.stringify(value, null, 2)
+      writeFileSync(this.filePath, _value)
     }
     catch (error) {
-      throw new Error(`Failed to write to ${this.path}`)
+      throw new Error(`Failed to write to ${this.filePath}`)
     }
+  }
+
+  private _obfuscate(value: Record<string, unknown>): string {
+    const jsonData = JSON.stringify(value, null, 2)
+    const base64Data = Buffer.from(jsonData).toString('base64')
+    return base64Data
+  }
+
+  private _deobfuscate(value: string): Record<string, unknown> {
+    const jsonData = Buffer.from(value, 'base64').toString()
+    const rawData = JSON.parse(jsonData)
+    return rawData
   }
 }
