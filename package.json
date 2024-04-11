@@ -12,7 +12,11 @@
     "url": "git+https://github.com/LU-JIEJIE/vaultify.git"
   },
   "bugs": "https://github.com/LU-JIEJIE/vaultify/issues",
-  "keywords": [],
+  "keywords": [
+    "command-line",
+    "configuration",
+    "node.js"
+  ],
   "sideEffects": false,
   "exports": {
     ".": {
