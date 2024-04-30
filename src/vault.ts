@@ -27,7 +27,7 @@ export default class Vault {
       fileName: 'config',
       fileExtension: 'json',
       obfuscate: false,
-      ...options
+      ...options,
     }
 
     this.name = formatOptions.name
@@ -95,7 +95,7 @@ export default class Vault {
 
         else
           return { value: undefined, done: true }
-      }
+      },
     }
   }
 

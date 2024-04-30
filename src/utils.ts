@@ -20,7 +20,9 @@ export function setProperty(obj: Record<string, unknown>, path: string, value: u
     return
   let pre: Record<string, unknown> = obj
   for (let i = 0; i < keys.length; i++) {
-    if (i === keys.length - 1) { pre[keys[i]] = value }
+    if (i === keys.length - 1) {
+      pre[keys[i]] = value
+    }
     else {
       if (pre[keys[i]] === undefined)
         pre[keys[i]] = {}
@@ -35,7 +37,9 @@ export function deleteProperty(obj: Record<string, unknown>, path: string) {
     return
   let pre: Record<string, unknown> = obj
   for (let i = 0; i < keys.length; i++) {
-    if (i === keys.length - 1) { delete pre[keys[i]] }
+    if (i === keys.length - 1) {
+      delete pre[keys[i]]
+    }
     else {
       if (pre[keys[i]] === undefined)
         return
