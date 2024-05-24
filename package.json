@@ -2,7 +2,7 @@
   "name": "vaultify",
   "type": "module",
   "version": "0.0.2",
-  "packageManager": "pnpm@9.0.6",
+  "packageManager": "pnpm@9.1.1",
   "description": "Conveniently manage the configuration file in your command-line project based on Node.js.",
   "author": "Lu-Jiejie <lu-jiejie@outlook.com>",
   "license": "MIT",
@@ -13,9 +13,9 @@
   },
   "bugs": "https://github.com/Lu-Jiejie/vaultify/issues",
   "keywords": [
-    "command-line",
     "configuration",
-    "node.js"
+    "cli",
+    "vault"
   ],
   "sideEffects": false,
   "exports": {
