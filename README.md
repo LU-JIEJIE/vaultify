@@ -1,7 +1,7 @@
 # vaultify
 
 [![npm version][npm-version-badge]][npm-version-href]
-[![install size][install-size-badge]][install-size-href]
+[![minzip][minzip-badge]][minzip-href]
 [![jsdocs][jsdocs-badge]][jsdocs-href]
 [![license][license-badge]][license-href]
 
@@ -144,8 +144,8 @@ The default values of `Vault`.
 <!-- Badge -->
 [npm-version-badge]: https://img.shields.io/npm/v/vaultify?style=flat&color=ddd&labelColor=444
 [npm-version-href]: https://www.npmjs.com/package/vaultify
-[install-size-badge]: https://img.shields.io/badge/dynamic/json?url=https://packagephobia.com/v2/api.json?p=vaultify&query=$.install.pretty&label=install%20size&style=flat&color=ddd&labelColor=444
-[install-size-href]: https://bundlephobia.com/result?p=vaultify
+[minzip-badge]: https://img.shields.io/bundlephobia/minzip/vaultify?style=flat&color=ddd&labelColor=444&label=minizip
+[minzip-href]: https://bundlephobia.com/result?p=vaultify
 [jsdocs-badge]: https://img.shields.io/badge/jsDocs-reference-ddd?style=flat&color=ddd&labelColor=444
 [jsdocs-href]: https://www.jsdocs.io/package/vaultify
 [license-badge]: https://img.shields.io/github/license/Lu-Jiejie/vaultify?style=flat&color=ddd&labelColor=444
