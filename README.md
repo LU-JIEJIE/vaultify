@@ -11,7 +11,7 @@ It just provides some simple features instead of a strict typecheck and validati
 
 Inspiration comes from [`Tampermonkey`](https://www.tampermonkey.net/) api.
 
-The configuration file will be stored default in `C:/Users/USERNAME/AppData/Roaming/PROJECT_NAME/config.json` on `Windows`, `~/.config/PROJECT_NAME/config.json` on `Linux` and `~/Library/Preferences/PROJECT_NAME/config.json` on `macOS`.
+The configuration file will be stored default in `C:/Users/USERNAME/AppData/Roaming/PROJECT_NAME/Config/config.json` on `Windows`, `~/.config/PROJECT_NAME/config.json` on `Linux` and `~/Library/Preferences/PROJECT_NAME/config.json` on `macOS`.
 
 ## Install
 
